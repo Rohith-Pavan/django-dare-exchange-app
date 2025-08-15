@@ -6,7 +6,7 @@
   "deploy": {
     "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && (python manage.py populate_db || echo 'Populate DB failed, continuing...') && gunicorn dareproject.wsgi --bind 0.0.0.0:$PORT",
     "healthcheckPath": "/health/",
-    "healthcheckTimeout": 300,
+    "healthcheckTimeout": 600,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }

@@ -19,8 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from dare.views import health_check
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('healthz/', health_check, name='health_check_alt'),  # Alternative health check
     path('', include('dare.urls')),
 ]
 

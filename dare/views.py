@@ -186,8 +186,12 @@ from django.views.decorators.http import require_http_methods
 @require_http_methods(["GET", "HEAD"])
 def health_check(request):
     """Simple health check endpoint for monitoring"""
-    from django.http import JsonResponse
-    return JsonResponse({'status': 'healthy', 'message': 'Application is running'})
+    from django.http import HttpResponse
+    import json
+    
+    # Use HttpResponse instead of JsonResponse for faster response
+    response_data = json.dumps({'status': 'healthy', 'message': 'Application is running'})
+    return HttpResponse(response_data, content_type='application/json', status=200)
 
 
 class CustomLoginView(auth_views.LoginView):

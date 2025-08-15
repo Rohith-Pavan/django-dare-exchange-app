@@ -37,6 +37,13 @@ if 'RAILWAY_ENVIRONMENT' in os.environ:
         'localhost',
         '127.0.0.1'
     ])
+    # Add CSRF trusted origins for Railway
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.railway.app',
+        'https://*.up.railway.app'
+    ]
+else:
+    CSRF_TRUSTED_ORIGINS = []
 
 # Application definition
 

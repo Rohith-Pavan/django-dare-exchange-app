@@ -179,6 +179,12 @@ def dare_rate(request, pk):
     return render(request, 'dare_rate.html', {'form': form, 'dare': dare, 'existing_rating': existing_rating})
 
 
+def health_check(request):
+    """Simple health check endpoint for monitoring"""
+    from django.http import JsonResponse
+    return JsonResponse({'status': 'healthy', 'message': 'Application is running'})
+
+
 class CustomLoginView(auth_views.LoginView):
     template_name = 'login.html'
     redirect_authenticated_user = True

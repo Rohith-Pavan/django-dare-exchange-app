@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.DareListView.as_view(), name='dare_list'),
+    path('health/', views.health_check, name='health_check'),
     path('dare/<int:pk>/', views.DareDetailView.as_view(), name='dare_detail'),
     path('dare/new/', views.DareCreateView.as_view(), name='dare_create'),
     path('dare/<int:pk>/edit/', views.DareUpdateView.as_view(), name='dare_update'),

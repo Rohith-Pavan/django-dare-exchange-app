@@ -8,7 +8,17 @@ class Command(BaseCommand):
     help = 'Populate database with sample data'
 
     def handle(self, *args, **options):
-        self.stdout.write('Populating database with sample data...')
+        try:
+            self.stdout.write('Populating database with sample data...')
+            self._populate_data()
+        except Exception as e:
+            self.stdout.write(
+                self.style.WARNING(f'Failed to populate database: {e}')
+            )
+            # Don't raise the exception to prevent deployment failure
+            return
+    
+    def _populate_data(self):
         
         # Create sample users if they don't exist
         admin_user, created = User.objects.get_or_create(

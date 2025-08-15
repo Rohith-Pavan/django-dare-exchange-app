@@ -1,1 +1,1 @@
-web: python manage.py migrate && python manage.py populate_db && python manage.py collectstatic --noinput && gunicorn dareproject.wsgi --bind 0.0.0.0:$PORT --log-file -
+web: python manage.py migrate && python manage.py collectstatic --noinput && (python manage.py populate_db || echo 'Populate DB failed, continuing...') && gunicorn dareproject.wsgi --bind 0.0.0.0:$PORT --log-file -

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+  <h1 class="mb-3">Dare Exchange</h1>
+  <p class="text-muted mb-4">Challenge yourself and others with exciting dares!</p>
+  {% if user.is_authenticated %}
+    <a href="{% url 'dare_create' %}" class="btn btn-primary">
+      <i data-lucide="plus"></i> Create New Dare
+    </a>
+  {% endif %}
+</div>
+
+<div class="row g-4">
+  {% for dare in dares %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ dare.title }}</h5>
+          <p class="card-text flex-grow-1 text-muted">{{ dare.description|truncatewords:15 }}</p>
+          
+          <div class="mb-3">
+            <span class="badge bg-info me-2">{{ dare.category.name }}</span>
+            {% if dare.status == 'verified' %}
+              <span class="badge bg-success">Verified</span>
+            {% elif dare.status == 'completed' %}
+              <span class="badge bg-warning">Pending</span>
+            {% elif dare.accepted_by %}
+              <span class="badge bg-info">Accepted</span>
+            {% else %}
+              <span class="badge bg-secondary">Available</span>
+            {% endif %}
+          </div>
+          
+          <div class="mb-3 small text-muted">
+            <div class="mb-1">
+              <i data-lucide="user" class="me-1" style="width: 14px; height: 14px;"></i>
+              Posted by: <strong>{{ dare.posted_by.username }}</strong>
+            </div>
+            {% if dare.accepted_by %}
+              <div class="mb-1">
+                <i data-lucide="check" class="me-1" style="width: 14px; height: 14px;"></i>
+                Accepted by: <strong>{{ dare.accepted_by.username }}</strong>
+              </div>
+            {% endif %}
+            {% if dare.ratings.count > 0 %}
+              <div>
+                <i data-lucide="star" class="me-1" style="width: 14px; height: 14px;"></i>
+                {{ dare.ratings.count }} rating{{ dare.ratings.count|pluralize }}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="mt-auto d-grid gap-2">
+            <a href="{% url 'dare_detail' dare.pk %}" class="btn btn-primary btn-sm">
+              <i data-lucide="eye" class="me-1" style="width: 14px; height: 14px;"></i>
+              View Details
+            </a>
+            {% if user == dare.posted_by %}
+              <div class="d-flex gap-2">
+                <a href="{% url 'dare_update' dare.pk %}" class="btn btn-warning btn-sm flex-fill">
+                  <i data-lucide="edit" class="me-1" style="width: 14px; height: 14px;"></i>
+                  Edit
+                </a>
+                <a href="{% url 'dare_delete' dare.pk %}" class="btn btn-danger btn-sm flex-fill">
+                  <i data-lucide="trash" class="me-1" style="width: 14px; height: 14px;"></i>
+                  Delete
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12">
+      <div class="text-center py-5">
+        <div class="mb-4">
+          <i data-lucide="inbox" style="width: 48px; height: 48px; color: var(--text-secondary);"></i>
+        </div>
+        <h3 class="mb-3">No dares available yet!</h3>
+        <p class="text-muted mb-4">Be the first to post a dare and start the challenge.</p>
+        {% if user.is_authenticated %}
+          <a href="{% url 'dare_create' %}" class="btn btn-primary">
+            <i data-lucide="plus" class="me-1" style="width: 16px; height: 16px;"></i>
+            Create First Dare
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

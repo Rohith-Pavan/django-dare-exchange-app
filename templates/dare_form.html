@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <!-- Header Card -->
+    <div class="card mb-4">
+      <div class="card-body text-center py-4">
+        <h2 class="fw-bold mb-2">
+          {% if form.instance.pk %}
+            <i data-lucide="edit-3" class="me-2"></i> Edit Dare
+          {% else %}
+            <i data-lucide="plus-circle" class="me-2"></i> Create New Dare
+          {% endif %}
+        </h2>
+        <p class="text-muted mb-0">Share an exciting challenge with the community!</p>
+      </div>
+    </div>
+    
+    <!-- Form Card -->
+    <div class="card">
+      <div class="card-body p-4">
+        <form method="post">
+          {% csrf_token %}
+          
+          <div class="mb-4">
+            <label for="{{ form.title.id_for_label }}" class="form-label fw-semibold">
+              <i data-lucide="type" class="me-2"></i> Dare Title
+            </label>
+            {{ form.title }}
+            {% if form.title.errors %}
+              <div class="text-danger mt-2">
+                {% for error in form.title.errors %}
+                  <small><i data-lucide="alert-circle" class="me-1"></i>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="mb-4">
+            <label for="{{ form.category.id_for_label }}" class="form-label fw-semibold">
+              <i data-lucide="tag" class="me-2"></i> Category
+            </label>
+            {{ form.category }}
+            {% if form.category.errors %}
+              <div class="text-danger mt-2">
+                {% for error in form.category.errors %}
+                  <small><i data-lucide="alert-circle" class="me-1"></i>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="mb-4">
+            <label for="{{ form.description.id_for_label }}" class="form-label fw-semibold">
+              <i data-lucide="file-text" class="me-2"></i> Description
+            </label>
+            {{ form.description }}
+            {% if form.description.errors %}
+              <div class="text-danger mt-2">
+                {% for error in form.description.errors %}
+                  <small><i data-lucide="alert-circle" class="me-1"></i>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-primary btn-lg py-3">
+              <i data-lucide="save" class="me-2"></i>
+              {% if form.instance.pk %}Update Dare{% else %}Create Dare{% endif %}
+            </button>
+            <a href="{% url 'dare_list' %}" class="btn btn-outline-secondary py-2">
+              <i data-lucide="arrow-left" class="me-2"></i> Back to All Dares
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

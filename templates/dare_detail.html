@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10 col-xl-8">
+    <!-- Header Section -->
+    <div class="card mb-3">
+      <div class="card-body text-center py-4">
+        <h1 class="h2 fw-bold mb-3">{{ dare.title }}</h1>
+        <span class="badge bg-info fs-6 px-3 py-2 rounded-pill">{{ dare.category.name }}</span>
+      </div>
+    </div>
+    
+    <!-- Main Content Row -->
+    <div class="row">
+      <!-- Description Column -->
+      <div class="col-lg-8 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <i data-lucide="file-text" class="me-2"></i>
+              <h4 class="mb-0">Description</h4>
+            </div>
+            <div class="bg-light p-3 rounded-3">
+              <p class="mb-0 lh-lg">{{ dare.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Info Column -->
+      <div class="col-lg-4">
+        <!-- Posted by Card -->
+        <div class="card mb-3">
+          <div class="card-body text-center py-3">
+            <div class="d-flex align-items-center justify-content-center mb-2">
+              <i data-lucide="user" class="me-2 text-success"></i>
+              <h6 class="mb-0 text-success">Posted by</h6>
+            </div>
+            <span class="badge bg-primary px-3 py-2 rounded-pill">{{ dare.posted_by.username }}</span>
+          </div>
+        </div>
+        
+        <!-- Status Card -->
+        <div class="card mb-3">
+          <div class="card-body text-center py-3">
+            <div class="d-flex align-items-center justify-content-center mb-2">
+              <i data-lucide="target" class="me-2 text-danger"></i>
+              <h6 class="mb-0 text-danger">Status</h6>
+            </div>
+            {% if dare.status == 'verified' %}
+              <span class="badge bg-success px-3 py-2 rounded-pill">
+                <i data-lucide="check-circle" class="me-1"></i> Verified
+              </span>
+            {% elif dare.status == 'completed' %}
+              <span class="badge bg-warning px-3 py-2 rounded-pill">
+                <i data-lucide="clock" class="me-1"></i> Completed
+              </span>
+            {% elif dare.accepted_by %}
+              <span class="badge bg-info px-3 py-2 rounded-pill">
+                <i data-lucide="user-check" class="me-1"></i> Accepted
+              </span>
+            {% else %}
+              <span class="badge bg-secondary px-3 py-2 rounded-pill">
+                <i data-lucide="zap" class="me-1"></i> Available
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Rating Card -->
+        {% if average_rating %}
+        <div class="card mb-3">
+          <div class="card-body text-center py-3">
+            <div class="d-flex align-items-center justify-content-center mb-2">
+              <i data-lucide="star" class="me-2 text-warning"></i>
+              <h6 class="mb-0 text-warning">Rating</h6>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <span class="fs-5 fw-bold me-2">{{ average_rating|floatformat:1 }}/5</span>
+              <div class="text-warning me-2">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= average_rating|floatformat:0 %}
+                    <i data-lucide="star" class="filled"></i>
+                  {% else %}
+                    <i data-lucide="star"></i>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <small class="text-muted">({{ ratings.count }} rating{{ ratings.count|pluralize }})</small>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Action Card -->
+        <div class="card">
+          <div class="card-body text-center py-3">
+            {% if user.is_authenticated %}
+              {% if dare.status == 'available' and user != dare.posted_by %}
+                <div class="mb-3">
+                  <h6 class="text-primary">Ready to take on this challenge?</h6>
+                </div>
+                <a href="{% url 'dare_accept' dare.pk %}" class="btn btn-primary px-4 py-2">
+                  <i data-lucide="zap" class="me-2"></i> Accept This Dare
+                </a>
+              {% elif dare.accepted_by == user and dare.status == 'accepted' %}
+                <div class="alert alert-success mb-3">
+                  <i data-lucide="check-circle" class="me-2"></i>
+                  <strong>You accepted this dare!</strong>
+                </div>
+                <a href="{% url 'dare_complete' dare.pk %}" class="btn btn-success px-4 py-2">
+                  <i data-lucide="trophy" class="me-2"></i> Submit Proof
+                </a>
+              {% elif dare.accepted_by == user and dare.status == 'completed' %}
+                <div class="alert alert-warning">
+                  <i data-lucide="clock" class="me-2"></i>
+                  <strong>Awaiting verification</strong>
+                </div>
+              {% elif dare.accepted_by == user and dare.status == 'verified' %}
+                <div class="alert alert-success">
+                  <i data-lucide="award" class="me-2"></i>
+                  <strong>Completed!</strong>
+                </div>
+              {% elif user == dare.posted_by %}
+                <div class="alert alert-info mb-3">
+                  <i data-lucide="user" class="me-2"></i>
+                  <strong>Your dare</strong>
+                </div>
+                {% if dare.status == 'completed' %}
+                  <a href="{% url 'dare_verify' dare.pk %}" class="btn btn-warning px-4 py-2">
+                    <i data-lucide="check-circle" class="me-2"></i> Verify Completion
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% else %}
+              <div class="alert alert-warning">
+                <a href="{% url 'login' %}" class="btn btn-primary">Login to Accept Dare</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+      <a href="{% url 'dare_list' %}" class="btn btn-outline-secondary">
+        <i data-lucide="arrow-left" class="me-2"></i> Back to All Dares
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

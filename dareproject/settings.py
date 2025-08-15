@@ -131,28 +131,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Use whitenoise for static file serving
+# Static files configuration for production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Netlify specific settings
-if 'NETLIFY' in os.environ:
-    # Use SQLite for Netlify (serverless)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/tmp/db.sqlite3',
-        }
-    }
-    # Disable migrations in serverless environment
-    MIGRATION_MODULES = {
-        'dare': None,
-        'auth': None,
-        'contenttypes': None,
-        'sessions': None,
-        'messages': None,
-        'staticfiles': None,
-        'admin': None,
-    }
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'

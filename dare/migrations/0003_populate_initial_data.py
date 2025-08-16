@@ -53,76 +53,76 @@ def populate_initial_data(apps, schema_editor):
     # Create sample dares
     sample_dares = [
         {
-            'title': 'Master 108 Surya Namaskars',
-            'description': 'Complete 108 Surya Namaskars (Sun Salutations) in one session. A traditional yoga challenge that tests endurance and devotion!',
-            'category': created_categories[0],  # Physical Challenge
-            'creator': created_users[1],  # arjun
-        },
+             'title': 'Master 108 Surya Namaskars',
+             'description': 'Complete 108 Surya Namaskars (Sun Salutations) in one session. A traditional yoga challenge that tests endurance and devotion!',
+             'category': created_categories[0],  # Physical Challenge
+             'posted_by': created_users[1],  # arjun
+         },
         {
-            'title': 'Learn a Classical Indian Raga',
-            'description': 'Learn to sing or play a classical Indian raga you\'ve never performed before. Share a recording of your performance.',
-            'category': created_categories[1],  # Creative
-            'creator': created_users[2],  # priya
-        },
-        {
-            'title': 'Feed 50 Street Animals',
-            'description': 'Prepare food and feed 50 street dogs or cats in your area. Document this act of compassion and share the experience.',
-            'category': created_categories[2],  # Social
-            'creator': created_users[3],  # rohit
-        },
-        {
-            'title': 'Cook Authentic Biryani from Scratch',
-            'description': 'Master the art of making authentic Hyderabadi or Lucknowi biryani from scratch. Share the cooking process and final result!',
-            'category': created_categories[5],  # Food
-            'creator': created_users[1],  # arjun
-        },
-        {
-            'title': 'Complete a 10K Morning Run',
-            'description': 'Wake up at 5 AM and complete a 10K run before sunrise. Capture the beautiful morning views and your achievement!',
-            'category': created_categories[0],  # Physical Challenge
-            'creator': created_users[2],  # priya
-        },
-        {
-            'title': 'Create Rangoli Art',
-            'description': 'Design and create a beautiful rangoli pattern using traditional or modern techniques. Share your colorful creation!',
-            'category': created_categories[1],  # Creative
-            'creator': created_users[4],  # sneha
-        },
-        {
-            'title': 'Learn Sanskrit Shlokas',
-            'description': 'Memorize and recite 5 Sanskrit shlokas with proper pronunciation. Share a video of your recitation.',
-            'category': created_categories[3],  # Learning
-            'creator': created_users[3],  # rohit
-        },
-        {
-            'title': 'Build an Indian Language App',
-            'description': 'Create a simple mobile or web app that teaches basic words in any Indian regional language.',
-            'category': created_categories[6],  # Technology
-            'creator': created_users[1],  # arjun
-        },
-        {
-            'title': 'Visit 5 Historical Monuments',
-            'description': 'Explore 5 historical monuments in your city or nearby areas. Document their history and significance.',
-            'category': created_categories[4],  # Adventure
-            'creator': created_users[2],  # priya
-        },
-        {
-            'title': 'Master 50 Bhangra Moves',
-            'description': 'Learn and perform 50 different Bhangra dance moves. Create an energetic dance video showcasing your skills!',
-            'category': created_categories[0],  # Physical Challenge
-            'creator': created_users[4],  # sneha
-        },
+             'title': 'Learn a Classical Indian Raga',
+             'description': 'Learn to sing or play a classical Indian raga you\'ve never performed before. Share a recording of your performance.',
+             'category': created_categories[1],  # Creative
+             'posted_by': created_users[2],  # priya
+         },
+         {
+             'title': 'Feed 50 Street Animals',
+             'description': 'Prepare food and feed 50 street dogs or cats in your area. Document this act of compassion and share the experience.',
+             'category': created_categories[2],  # Social
+             'posted_by': created_users[3],  # rohit
+         },
+         {
+             'title': 'Cook Authentic Biryani from Scratch',
+             'description': 'Master the art of making authentic Hyderabadi or Lucknowi biryani from scratch. Share the cooking process and final result!',
+             'category': created_categories[5],  # Food
+             'posted_by': created_users[1],  # arjun
+         },
+         {
+             'title': 'Complete a 10K Morning Run',
+             'description': 'Wake up at 5 AM and complete a 10K run before sunrise. Capture the beautiful morning views and your achievement!',
+             'category': created_categories[0],  # Physical Challenge
+             'posted_by': created_users[2],  # priya
+         },
+         {
+             'title': 'Create Rangoli Art',
+             'description': 'Design and create a beautiful rangoli pattern using traditional or modern techniques. Share your colorful creation!',
+             'category': created_categories[1],  # Creative
+             'posted_by': created_users[4],  # sneha
+         },
+         {
+             'title': 'Learn Sanskrit Shlokas',
+             'description': 'Memorize and recite 5 Sanskrit shlokas with proper pronunciation. Share a video of your recitation.',
+             'category': created_categories[3],  # Learning
+             'posted_by': created_users[3],  # rohit
+         },
+         {
+             'title': 'Build an Indian Language App',
+             'description': 'Create a simple mobile or web app that teaches basic words in any Indian regional language.',
+             'category': created_categories[6],  # Technology
+             'posted_by': created_users[1],  # arjun
+         },
+         {
+             'title': 'Visit 5 Historical Monuments',
+             'description': 'Explore 5 historical monuments in your city or nearby areas. Document their history and significance.',
+             'category': created_categories[4],  # Adventure
+             'posted_by': created_users[2],  # priya
+         },
+         {
+             'title': 'Master 50 Bhangra Moves',
+             'description': 'Learn and perform 50 different Bhangra dance moves. Create an energetic dance video showcasing your skills!',
+             'category': created_categories[0],  # Physical Challenge
+             'posted_by': created_users[4],  # sneha
+         },
     ]
     
     for dare_data in sample_dares:
-        Dare.objects.get_or_create(
-            title=dare_data['title'],
-            defaults={
-                'description': dare_data['description'],
-                'category': dare_data['category'],
-                'creator': dare_data['creator'],
-            }
-        )
+         Dare.objects.get_or_create(
+             title=dare_data['title'],
+             defaults={
+                 'description': dare_data['description'],
+                 'category': dare_data['category'],
+                 'posted_by': dare_data['posted_by'],
+             }
+         )
 
 
 def reverse_populate_initial_data(apps, schema_editor):

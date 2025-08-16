@@ -23,6 +23,7 @@ from dare.views import health_check
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),  # Built-in auth URLs
     path('healthz/', health_check, name='health_check_alt'),  # Alternative health check
     path('', include('dare.urls')),
 ]

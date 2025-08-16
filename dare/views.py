@@ -79,14 +79,43 @@ class DareDeleteView(LoginRequiredMixin, DeleteView):
 def accept_dare(request, pk):
     dare = get_object_or_404(Dare, pk=pk)
     
+    if dare.status != 'available':
+        messages.error(request, 'This dare is no longer available.')
+        return redirect('dare_detail', pk=pk)
+    
+    if dare.posted_by == request.user:
+        messages.error(request, 'You cannot accept your own dare.')
+        return redirect('dare_detail', pk=pk)
+    
+    # Accept the dare
+    dare.accepted_by = request.user
+    dare.status = 'accepted'
+    dare.save()
+    
+    messages.success(request, f'You accepted the dare: {dare.title}! Now submit your proof to complete it.')
+    return redirect('dare_detail', pk=pk)
+
+@login_required
+def complete_dare(request, pk):
+    dare = get_object_or_404(Dare, pk=pk)
+    
+    if dare.accepted_by != request.user:
+        messages.error(request, 'You must accept this dare first.')
+        return redirect('dare_detail', pk=pk)
+    
     if request.method == 'POST':
-        form = DareCompletionForm(request.POST)
+        form = DareCompletionForm(request.POST, request.FILES)
         if form.is_valid():
             completion = form.save(commit=False)
             completion.dare = dare
-            completion.user = request.user
+            completion.completed_by = request.user
             completion.save()
-            messages.success(request, f'You accepted the dare: {dare.title}')
+            
+            # Update dare status
+            dare.status = 'completed'
+            dare.save()
+            
+            messages.success(request, f'You completed the dare: {dare.title}! Awaiting verification.')
             return redirect('dare_detail', pk=pk)
     else:
         form = DareCompletionForm()
@@ -110,7 +139,7 @@ def rate_dare(request, pk):
         if form.is_valid():
             rating = form.save(commit=False)
             rating.dare = dare
-            rating.user = request.user
+            rating.rated_by = request.user
             rating.save()
             messages.success(request, f'You rated the dare: {dare.title}')
             return redirect('dare_detail', pk=pk)

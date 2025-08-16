@@ -101,7 +101,7 @@
                 <div class="mb-3">
                   <h6 class="text-primary">Ready to take on this challenge?</h6>
                 </div>
-                <a href="{% url 'dare_accept' dare.pk %}" class="btn btn-primary px-4 py-2">
+                <a href="{% url 'accept_dare' dare.pk %}" class="btn btn-primary px-4 py-2">
                   <i data-lucide="zap" class="me-2"></i> Accept This Dare
                 </a>
               {% elif dare.accepted_by == user and dare.status == 'accepted' %}
@@ -109,7 +109,7 @@
                   <i data-lucide="check-circle" class="me-2"></i>
                   <strong>You accepted this dare!</strong>
                 </div>
-                <a href="{% url 'dare_complete' dare.pk %}" class="btn btn-success px-4 py-2">
+                <a href="{% url 'complete_dare' dare.pk %}" class="btn btn-success px-4 py-2">
                   <i data-lucide="trophy" class="me-2"></i> Submit Proof
                 </a>
               {% elif dare.accepted_by == user and dare.status == 'completed' %}

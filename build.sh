@@ -19,9 +19,8 @@ python manage.py check --deploy
 echo "Running database migrations..."
 python manage.py migrate
 
-# Load initial data fixtures
-echo "Loading initial sample data..."
-python manage.py loaddata initial_data.json
+# Data will be populated automatically via migrations
+echo "Sample data will be loaded via Django migrations..."
 
 # Collect static files
 echo "Collecting static files..."

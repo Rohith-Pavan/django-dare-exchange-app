@@ -39,11 +39,11 @@ class DareDetailView(DetailView):
         if self.request.user.is_authenticated:
             context['has_completed'] = DareCompletion.objects.filter(
                 dare=self.object,
-                user=self.request.user
+                completed_by=self.request.user
             ).exists()
             context['user_rating'] = DareRating.objects.filter(
                 dare=self.object,
-                user=self.request.user
+                rated_by=self.request.user
             ).first()
         return context
 

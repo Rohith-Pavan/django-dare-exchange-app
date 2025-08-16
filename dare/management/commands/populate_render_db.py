@@ -33,13 +33,17 @@ class Command(BaseCommand):
                 if created:
                     self.stdout.write(f'✅ Created category: {category.name}')
             
-            # Create demo users
+            # Create demo users with Indian names
             demo_users = [
                 {'username': 'admin', 'email': 'admin@dareexchange.com', 'is_staff': True, 'is_superuser': True},
-                {'username': 'alice', 'email': 'alice@example.com'},
-                {'username': 'bob', 'email': 'bob@example.com'},
-                {'username': 'charlie', 'email': 'charlie@example.com'},
-                {'username': 'diana', 'email': 'diana@example.com'},
+                {'username': 'arjun', 'email': 'arjun@example.com'},
+                {'username': 'priya', 'email': 'priya@example.com'},
+                {'username': 'rohit', 'email': 'rohit@example.com'},
+                {'username': 'sneha', 'email': 'sneha@example.com'},
+                {'username': 'vikram', 'email': 'vikram@example.com'},
+                {'username': 'ananya', 'email': 'ananya@example.com'},
+                {'username': 'karan', 'email': 'karan@example.com'},
+                {'username': 'meera', 'email': 'meera@example.com'},
             ]
             
             created_users = []
@@ -58,82 +62,107 @@ class Command(BaseCommand):
                     self.stdout.write(f'✅ Created user: {user.username}')
                 created_users.append(user)
             
-            # Create sample dares
+            # Create sample dares with Indian cultural context
             sample_dares = [
                 {
-                    'title': 'Complete 50 Push-ups Challenge',
-                    'description': 'Do 50 push-ups in one session and record a video as proof. Show your strength and determination!',
+                    'title': 'Master 108 Surya Namaskars',
+                    'description': 'Complete 108 Surya Namaskars (Sun Salutations) in one session. A traditional yoga challenge that tests endurance and devotion!',
                     'category': created_categories[0],  # Physical Challenge
                 },
                 {
-                    'title': 'Learn and Perform a New Song',
-                    'description': 'Learn to play or sing a new song you\'ve never performed before and share a recording.',
+                    'title': 'Learn a Classical Indian Raga',
+                    'description': 'Learn to sing or play a classical Indian raga you\'ve never performed before. Share a recording of your performance.',
                     'category': created_categories[1],  # Creative
                 },
                 {
-                    'title': 'Random Act of Kindness',
-                    'description': 'Perform a genuine random act of kindness for a stranger and share the heartwarming story.',
+                    'title': 'Feed 50 Street Animals',
+                    'description': 'Prepare food and feed 50 street dogs or cats in your area. Document this act of compassion and share the experience.',
                     'category': created_categories[2],  # Social
                 },
                 {
-                    'title': 'Master a New Recipe',
-                    'description': 'Cook a complex dish you\'ve never made before and share photos of the cooking process and final result.',
+                    'title': 'Cook Authentic Biryani from Scratch',
+                    'description': 'Master the art of making authentic Hyderabadi or Lucknowi biryani from scratch. Share the cooking process and final result!',
                     'category': created_categories[5],  # Food
                 },
                 {
-                    'title': 'Complete a 5K Run',
-                    'description': 'Run a full 5K distance and share your time, route, and experience. Perfect for fitness enthusiasts!',
+                    'title': 'Complete a 10K Morning Run',
+                    'description': 'Wake up at 5 AM and complete a 10K run before sunrise. Capture the beautiful morning views and your achievement!',
                     'category': created_categories[0],  # Physical Challenge
                 },
                 {
-                    'title': 'Create Digital Art Masterpiece',
-                    'description': 'Create an original digital artwork using any software and share your creative process.',
+                    'title': 'Create Rangoli Art',
+                    'description': 'Design and create a beautiful rangoli pattern using traditional or modern techniques. Share your colorful creation!',
                     'category': created_categories[1],  # Creative
                 },
                 {
-                    'title': 'Learn 10 Words in a New Language',
-                    'description': 'Pick a language you don\'t know and learn 10 useful words. Record yourself using them in sentences.',
+                    'title': 'Learn Sanskrit Shlokas',
+                    'description': 'Memorize and recite 5 Sanskrit shlokas with proper pronunciation. Share a video of your recitation.',
                     'category': created_categories[3],  # Learning
                 },
                 {
-                    'title': 'Build a Simple Web App',
-                    'description': 'Create a basic web application using any framework and deploy it online.',
+                    'title': 'Build an Indian Language App',
+                    'description': 'Create a simple mobile or web app that teaches basic words in any Indian regional language.',
                     'category': created_categories[6],  # Technology
                 },
                 {
-                    'title': 'Explore a New Neighborhood',
-                    'description': 'Visit a part of your city you\'ve never been to before and document your discoveries.',
+                    'title': 'Visit 5 Historical Monuments',
+                    'description': 'Explore 5 historical monuments in your city or nearby areas. Document their history and significance.',
                     'category': created_categories[4],  # Adventure
                 },
                 {
-                    'title': 'Compliment 5 Strangers',
-                    'description': 'Give genuine compliments to 5 different strangers and share how it made you feel.',
+                    'title': 'Teach a Skill to 10 People',
+                    'description': 'Share any skill you know with 10 different people for free. Document the teaching sessions and their reactions.',
                     'category': created_categories[2],  # Social
                 },
                 {
-                    'title': 'Do 100 Jumping Jacks',
-                    'description': 'Complete 100 jumping jacks without stopping and record your achievement.',
+                    'title': 'Master 50 Bhangra Moves',
+                    'description': 'Learn and perform 50 different Bhangra dance moves. Create an energetic dance video showcasing your skills!',
                     'category': created_categories[0],  # Physical Challenge
                 },
                 {
-                    'title': 'Write a Short Story',
-                    'description': 'Write a creative short story of at least 500 words and share it with the community.',
+                    'title': 'Write a Bollywood Script',
+                    'description': 'Write a complete short film script in Bollywood style with drama, romance, and action. Share your creative story!',
                     'category': created_categories[1],  # Creative
                 },
                 {
-                    'title': 'Try a New Cuisine',
-                    'description': 'Visit a restaurant serving cuisine you\'ve never tried before and document the experience.',
+                    'title': 'Master Regional Indian Cuisine',
+                    'description': 'Cook authentic dishes from 5 different Indian states you\'ve never tried before. Document the culinary journey!',
                     'category': created_categories[5],  # Food
                 },
                 {
-                    'title': 'Solve a Coding Challenge',
-                    'description': 'Complete a challenging programming problem on any coding platform and share your solution.',
+                    'title': 'Code in an Indian Language',
+                    'description': 'Write a program with variable names and comments in Hindi, Tamil, or any Indian language. Share your unique code!',
                     'category': created_categories[6],  # Technology
                 },
                 {
-                    'title': 'Hike a New Trail',
-                    'description': 'Find and hike a trail you\'ve never been on before. Share photos and your experience.',
+                    'title': 'Trek to a Temple',
+                    'description': 'Plan and complete a trek to a hilltop temple or spiritual place. Share the spiritual and physical journey.',
                     'category': created_categories[4],  # Adventure
+                },
+                {
+                    'title': 'Organize a Community Cleanup',
+                    'description': 'Organize and lead a community cleanup drive in your neighborhood. Get at least 20 people to participate.',
+                    'category': created_categories[2],  # Social
+                },
+                {
+                    'title': 'Learn Traditional Indian Martial Arts',
+                    'description': 'Learn basic moves of Kalaripayattu, Gatka, or any traditional Indian martial art. Demonstrate your skills!',
+                    'category': created_categories[0],  # Physical Challenge
+                },
+                {
+                    'title': 'Create Indian Folk Art',
+                    'description': 'Learn and create artwork in Madhubani, Warli, or any traditional Indian folk art style. Share your masterpiece!',
+                    'category': created_categories[1],  # Creative
+                },
+                {
+                    'title': 'Master Indian Street Food',
+                    'description': 'Learn to make 10 different Indian street foods like pani puri, vada pav, dosa, etc. Host a street food party!',
+                    'category': created_categories[5],  # Food
+                },
+                {
+                    'title': 'Explore Indian Philosophy',
+                    'description': 'Read and understand concepts from Bhagavad Gita, Upanishads, or any Indian philosophical text. Share your insights!',
+                    'category': created_categories[3],  # Learning
                 },
             ]
             
@@ -192,7 +221,7 @@ class Command(BaseCommand):
                     f'🚀 Your Dare Exchange is ready for action!\n\n'
                     f'🔐 Demo Login Credentials:\n'
                     f'   Admin: admin / demopass123\n'
-                    f'   Users: alice, bob, charlie, diana / demopass123'
+                    f'   Users: arjun, priya, rohit, sneha, vikram, ananya, karan, meera / demopass123'
                 )
             )
                 

@@ -24,7 +24,7 @@ class DareListView(ListView):
         # Filter out completed dares if user is logged in
         if self.request.user.is_authenticated:
             completed_dares = DareCompletion.objects.filter(
-                user=self.request.user
+                completed_by=self.request.user
             ).values_list('dare_id', flat=True)
             queryset = queryset.exclude(id__in=completed_dares)
         return queryset
@@ -101,7 +101,7 @@ def rate_dare(request, pk):
     dare = get_object_or_404(Dare, pk=pk)
     
     # Check if user has completed this dare
-    if not DareCompletion.objects.filter(dare=dare, user=request.user).exists():
+    if not DareCompletion.objects.filter(dare=dare, completed_by=request.user).exists():
         messages.error(request, 'You must complete a dare before rating it.')
         return redirect('dare_detail', pk=pk)
     

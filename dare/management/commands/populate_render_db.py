@@ -160,14 +160,14 @@ class Command(BaseCommand):
                         acceptor = random.choice([u for u in created_users if u != creator])
                         completion = DareCompletion.objects.create(
                             dare=dare,
-                            user=acceptor,
+                            completed_by=acceptor,
                             proof_text=f"I completed this dare! It was {random.choice(['amazing', 'challenging', 'fun', 'rewarding'])}.")
                         
                         # Sometimes add ratings
                         if random.random() < 0.7:  # 70% chance of rating
                             rating = DareRating.objects.create(
                                 dare=dare,
-                                user=acceptor,
+                                rated_by=acceptor,
                                 rating=random.randint(3, 5),
                                 comment=f"Great dare! {random.choice(['Loved it!', 'Would recommend!', 'Super fun!', 'Challenging but worth it!'])}"
                             )

@@ -3,7 +3,7 @@ services:
     name: django-dare-exchange
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn dareproject.wsgi:application"
+    startCommand: "gunicorn dareproject.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: DEBUG
         value: "False"
@@ -15,8 +15,11 @@ services:
         fromDatabase:
           name: django-dare-db
           property: connectionString
+      - key: RENDER
+        value: "true"
 
 databases:
   - name: django-dare-db
     databaseName: django_dare_exchange
     user: django_user
+    plan: free

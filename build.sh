@@ -19,9 +19,9 @@ python manage.py check --deploy
 echo "Running database migrations..."
 python manage.py migrate
 
-# Populate database with sample data
+# Populate database with sample data (Force run)
 echo "Populating database with sample data..."
-python manage.py populate_render_db
+python manage.py populate_render_db --verbosity=2
 
 # Collect static files
 echo "Collecting static files..."

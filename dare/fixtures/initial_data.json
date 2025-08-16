@@ -1,0 +1,210 @@
+[
+  {
+    "model": "dare.category",
+    "pk": 1,
+    "fields": {
+      "name": "Physical Challenge",
+      "description": "Physical activities and sports challenges"
+    }
+  },
+  {
+    "model": "dare.category",
+    "pk": 2,
+    "fields": {
+      "name": "Creative",
+      "description": "Art, music, and creative challenges"
+    }
+  },
+  {
+    "model": "dare.category",
+    "pk": 3,
+    "fields": {
+      "name": "Social",
+      "description": "Social interaction and community challenges"
+    }
+  },
+  {
+    "model": "dare.category",
+    "pk": 4,
+    "fields": {
+      "name": "Learning",
+      "description": "Educational and skill-building challenges"
+    }
+  },
+  {
+    "model": "dare.category",
+    "pk": 5,
+    "fields": {
+      "name": "Adventure",
+      "description": "Outdoor and adventure challenges"
+    }
+  },
+  {
+    "model": "dare.category",
+    "pk": 6,
+    "fields": {
+      "name": "Food",
+      "description": "Cooking and food-related challenges"
+    }
+  },
+  {
+    "model": "dare.category",
+    "pk": 7,
+    "fields": {
+      "name": "Technology",
+      "description": "Tech and coding challenges"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "email": "admin@dareexchange.com",
+      "is_staff": true,
+      "is_superuser": true,
+      "password": "pbkdf2_sha256$600000$dummy$dummy",
+      "date_joined": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "arjun",
+      "email": "arjun@example.com",
+      "password": "pbkdf2_sha256$600000$dummy$dummy",
+      "date_joined": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "priya",
+      "email": "priya@example.com",
+      "password": "pbkdf2_sha256$600000$dummy$dummy",
+      "date_joined": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "rohit",
+      "email": "rohit@example.com",
+      "password": "pbkdf2_sha256$600000$dummy$dummy",
+      "date_joined": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 1,
+    "fields": {
+      "title": "Master 108 Surya Namaskars",
+      "description": "Complete 108 Surya Namaskars (Sun Salutations) in one session. A traditional yoga challenge that tests endurance and devotion!",
+      "category": 1,
+      "creator": 2,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 2,
+    "fields": {
+      "title": "Learn a Classical Indian Raga",
+      "description": "Learn to sing or play a classical Indian raga you've never performed before. Share a recording of your performance.",
+      "category": 2,
+      "creator": 3,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 3,
+    "fields": {
+      "title": "Feed 50 Street Animals",
+      "description": "Prepare food and feed 50 street dogs or cats in your area. Document this act of compassion and share the experience.",
+      "category": 3,
+      "creator": 4,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 4,
+    "fields": {
+      "title": "Cook Authentic Biryani from Scratch",
+      "description": "Master the art of making authentic Hyderabadi or Lucknowi biryani from scratch. Share the cooking process and final result!",
+      "category": 6,
+      "creator": 2,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 5,
+    "fields": {
+      "title": "Complete a 10K Morning Run",
+      "description": "Wake up at 5 AM and complete a 10K run before sunrise. Capture the beautiful morning views and your achievement!",
+      "category": 1,
+      "creator": 3,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 6,
+    "fields": {
+      "title": "Create Rangoli Art",
+      "description": "Design and create a beautiful rangoli pattern using traditional or modern techniques. Share your colorful creation!",
+      "category": 2,
+      "creator": 4,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 7,
+    "fields": {
+      "title": "Learn Sanskrit Shlokas",
+      "description": "Memorize and recite 5 Sanskrit shlokas with proper pronunciation. Share a video of your recitation.",
+      "category": 4,
+      "creator": 2,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 8,
+    "fields": {
+      "title": "Build an Indian Language App",
+      "description": "Create a simple mobile or web app that teaches basic words in any Indian regional language.",
+      "category": 7,
+      "creator": 3,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 9,
+    "fields": {
+      "title": "Visit 5 Historical Monuments",
+      "description": "Explore 5 historical monuments in your city or nearby areas. Document their history and significance.",
+      "category": 5,
+      "creator": 4,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  },
+  {
+    "model": "dare.dare",
+    "pk": 10,
+    "fields": {
+      "title": "Master 50 Bhangra Moves",
+      "description": "Learn and perform 50 different Bhangra dance moves. Create an energetic dance video showcasing your skills!",
+      "category": 1,
+      "creator": 2,
+      "created_at": "2025-01-16T12:00:00Z"
+    }
+  }
+]

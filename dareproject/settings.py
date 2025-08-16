@@ -27,7 +27,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-1-2kv@wzc#y258(oji%8-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+# Allow all hosts for Render deployment
+ALLOWED_HOSTS = ['*'] if DEBUG else os.environ.get('ALLOWED_HOSTS', '*').split(',')
+
+# Add Render-specific hosts
+if 'RENDER' in os.environ:
+    ALLOWED_HOSTS.extend([
+        '.onrender.com',
+        'localhost',
+        '127.0.0.1'
+    ])
 
 # Application definition
 
@@ -121,6 +130,18 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+# WhiteNoise configuration for static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Security settings for production
+if not DEBUG:
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'

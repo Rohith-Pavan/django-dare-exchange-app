@@ -128,3 +128,19 @@ def user_profile(request, username):
     return render(request, 'user_profile.html', {
         'username': username
     })
+
+def signup(request):
+    from django.contrib.auth.forms import UserCreationForm
+    from django.contrib.auth import login
+    
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, f'Welcome to Dare Exchange, {user.username}!')
+            return redirect('dare_list')
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'registration/signup.html', {'form': form})
